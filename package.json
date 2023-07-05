@@ -9,6 +9,7 @@
   "author": "Suresh Bhattarai",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "nodemon": "^1.14.9",
     "pg": "^8.11.1",

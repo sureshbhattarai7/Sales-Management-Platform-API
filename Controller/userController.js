@@ -1,5 +1,6 @@
 const User = require('./../Model/userModel');
 const { getRepository } = require('typeorm');
+const bcrypt = require('bcryptjs');
 
 exports.createUser = async (req, res) => {
     try {
@@ -25,6 +26,44 @@ exports.createUser = async (req, res) => {
         })
     }
 }
+
+
+exports.login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const userRepository = getRepository(User);
+
+        const user = userRepository.findOne({ email }).select('+password');
+        if (!user) {
+            return res.status(404).json({
+                status: 'fail',
+                message: 'User does not exists!'
+            })
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({
+                status: 'fail',
+                message: 'Invalid email or password!'
+            })
+        }
+
+        res.status(200).json({
+            status: 'success',
+            message: 'User logged in successfully!',
+            data: {
+                user
+            }
+        })
+
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: err.message
+        })
+    };
+};
 
 exports.getUsers = async (req, res) => {
     try {
@@ -76,7 +115,10 @@ exports.updateUser = async (req, res) => {
         const { firstName, lastName, password } = req.body;
         const userRepository = getRepository(User);
 
-        const user = await userRepository.findOne(req.params.id);
+        const user = await userRepository.findOne(req.params.id, {
+            new: true,
+            runValidators: true
+        });
         if (!user) {
             return res.status(404).json({
                 status: 'fail',

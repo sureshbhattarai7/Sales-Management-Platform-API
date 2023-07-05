@@ -7,19 +7,19 @@ module.exports = new EntitySchema({
     columns: {
         id: {
             primary: true,
-            type: "number",
+            type: Number,
             nullable: false,
         },
         firstName: {
-            type: "varchar",
+            type: String,
             nullable: [false, "First name is required!"],
         },
         lastName: {
-            type: "varchar",
+            type: String,
             nullable: [false, "Last name is required!"],
         },
         email: {
-            type: "varchar",
+            type: String,
             nullable: [false, "Email is required!"],
             unique: true,
             lowercase: true,
@@ -29,7 +29,7 @@ module.exports = new EntitySchema({
             },
         },
         password: {
-            type: "varchar",
+            type: String,
             nullable: [false, "Password is required!"],
             validate: {
                 validator: (el) => el.length >= 8,
@@ -38,7 +38,7 @@ module.exports = new EntitySchema({
         },
 
         passwordConfirm: {
-            type: "varchar",
+            type: String,
             nullable: [false, "passwordConfirm is required!"],
             validate: {
                 validator: function (el) {
@@ -48,4 +48,6 @@ module.exports = new EntitySchema({
         },
     }
 });
+
+
 
