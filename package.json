@@ -1,0 +1,22 @@
+{
+  "name": "sales-management-platform",
+  "version": "1.0.0",
+  "description": "Sales Management Platform APIs using Node.js, express.js and MySQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Suresh Bhattarai",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^1.14.9",
+    "pg": "^8.11.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.17",
+    "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.3"
+  }
+}
