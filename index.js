@@ -2,6 +2,8 @@ const express = require('express');
 const userRoute = require('./Router/userRoute');
 const productRoute = require('./Router/productRoute');
 const typeorm = require('typeorm');
+const User = require('./Model/userModel');
+const Product = require('./Model/productModel');
 
 require('dotenv').config({ path: './config.env' });
 
@@ -18,7 +20,8 @@ const myDataSource = new typeorm.DataSource({
     username: "postgres",
     password: "admin",
     database: "Salesdb",
-    entities: ["src/entity/*.js"],
+    // entities: ["src/entity/*.js"],
+    entities: [Product, User],
     logging: true,
     synchronize: true,
 });

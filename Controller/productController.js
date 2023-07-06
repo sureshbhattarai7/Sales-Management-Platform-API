@@ -1,4 +1,3 @@
-const { describe } = require('node:test');
 const Product = require('./../Model/productModel');
 const { getRepository } = require('typeorm');
 

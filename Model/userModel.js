@@ -1,7 +1,7 @@
 const EntitySchema = require("typeorm").EntitySchema;
 const validator = require("validator");
 
-module.exports = new EntitySchema({
+const User = new EntitySchema({
     name: "User",
     tableName: "users",
     columns: {
@@ -49,5 +49,5 @@ module.exports = new EntitySchema({
     }
 });
 
-
+module.exports = User;
 
